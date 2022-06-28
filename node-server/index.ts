@@ -1,13 +1,23 @@
 import express, { Express, Request, Response } from 'express';
 import dotenv from 'dotenv';
-// import { Server } from 'socket.io'
+import { Server } from 'socket.io';
 import { getAllPages, getPage, upsertPage } from './prisma/page';
 import bodyParser, { BodyParser } from 'body-parser'
+import http from 'http'
 
 dotenv.config();
 
 const app: Express = express();
 const port = process.env.PORT;
+
+const server = http.createServer(app)
+
+const io = new Server(server);
+
+io.on("connection", (socket) => {
+    console.log("user loged")
+});
+
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json())
@@ -35,6 +45,6 @@ app.post('/:page', async (req: Request, res: Response) => {
     res.send(page);
 })
 
-app.listen(port, () => {
+server.listen(port, () => {
     console.log(`⚡️[server]: Server is running at https://localhost:${port}`);
 });
