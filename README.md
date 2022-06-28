@@ -23,7 +23,7 @@ Dontpad for monkeys 🙊
 - <span style="color: #5E81AC;">Sveltejs</span>
 
 *Backend platform*:
-- Nodejs (Express and Socket.io)
+- <span style="color: #5E81AC;">Nodejs (Express and Socket.io)</span>
 - Python with FastAPI
 - Python with DRF
 - Go
