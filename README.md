@@ -20,14 +20,18 @@ Dontpad for monkeys 🙊
 *Frontend*:
 - Reactjs
 - Vuejs
-- Sveltejs
+- <span style="color: #5E81AC;">Sveltejs</span>
 
 *Backend platform*:
 - Nodejs (Express and Socket.io)
 - Python with FastAPI
 - Python with DRF
 - Go
-- Rust with Actix
+- <span style="color: #5E81AC;">Rust with Actix</span>
 
 *Database*:
-- Mongodb
+- <span style="color: #5E81AC;">Mongodb</span>
+
+#### Developers
+
+<span style="color: #5E81AC;">⬤</span> [abehidek](https://github.com/abehidek)
