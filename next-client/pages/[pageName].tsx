@@ -46,12 +46,12 @@ export default function Page() {
     }
 
     return (
-        <>
+        <section className='flex items-center flex-col h-screen justify-center bg-slate-200 gap-5'>
             <header className='text-center'>
-                <h1 className='text-2xl font-bold'> {pageName} </h1>
-                <h2> {users} </h2>
+                <h1 className='text-2xl font-bold'> {pageName} monkeypad</h1>
+                <h2>{users} users in this monkeypad</h2>
             </header>
-            <textarea className='border-2 border-black' onChange={handleBodyChange} value={pageBody} />
-        </>
+            <textarea className='w-full h-screen resize-none' onChange={handleBodyChange} value={pageBody} />
+        </section>
     )
 }
