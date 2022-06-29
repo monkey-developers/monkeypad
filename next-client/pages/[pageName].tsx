@@ -2,7 +2,8 @@ import { useRouter } from 'next/router'
 import { useEffect, useState } from 'react';
 import { io } from 'socket.io-client'
 
-const socket = io("ws://localhost:8000");
+const url = process.env.NEXT_PUBLIC_API_URL;
+const socket = io("ws://" + url);
 
 interface pageData {
     body: {
