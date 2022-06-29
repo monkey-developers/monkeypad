@@ -17,12 +17,12 @@ Dontpad for monkeys 🙊
 - Save image to other formats such as pdf
 
 ### Possible tech stacks:
-*Frontend*:
+*Front-end*:
 - Reactjs
 - Vuejs
 - <span style="color: #5E81AC;">Sveltejs</span>
 
-*Backend platform*:
+*Back-end platform*:
 - <span style="color: #5E81AC;">Nodejs (Express and Socket.io)</span>
 - Python with FastAPI
 - Python with DRF
