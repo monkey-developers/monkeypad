@@ -9,14 +9,6 @@ export const getPage = async (name: string) => {
     let page = await prisma.page.findFirst({
         where: { name: name },
     });
-    if (!page) {
-        page = await prisma.page.create({
-            data: {
-                body: "",
-                name: name
-            }
-        });
-    }
     return page;
 }
 

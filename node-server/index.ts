@@ -42,30 +42,108 @@ app.use(function (req, res, next) {
     next();
 });
 
-io.on("connection", (socket) => {
-    socket.on("disconnect", () => { console.log("user disconnected") });
+// data
+interface Page {
+    name: string,
+    body: string,
+    users: number
+}
 
-    // own
+let temporaryDatabase: Page[] = [];
 
-    socket.on("get_page", async (pageName: string, callback) => {
-        if (pageName != null) {
-            console.log('client wants page, client data: ' + pageName);
-            const { body } = await getPage(pageName);
-            callback({
-                body: {
-                    pageName: pageName,
-                    pageBody: body
-                }
-            });
+const getTemporaryPage = async (pageName: string) => {
+    let temporaryPage = temporaryDatabase.find(page => page.name === pageName)
+    if (!temporaryPage) {
+        const dbPage = await getPage(pageName);
+        console.log("[database][data]: Database Page: " + dbPage);
+
+        if (dbPage != null) {
+            temporaryPage = { name: dbPage.name, body: dbPage.body, users: 0 };
         } else {
-            console.log("Empty page name");
+            temporaryPage = { name: pageName, body: "", users: 0 };
+        }
+
+        temporaryDatabase.push(temporaryPage);
+        console.log("[server][data]: Created a new page in RAM")
+    }
+    console.log("[server][data]: Find page, page: ", temporaryPage)
+    return temporaryPage;
+}
+
+const updateTemporaryPage = (pageName: string, newPageBody: string) => {
+    const pageIndex = temporaryDatabase.findIndex(page => page.name === pageName)
+    temporaryDatabase[pageIndex].body = newPageBody
+    return temporaryDatabase.find(page => page.name === pageName);
+}
+
+const updateTemporaryPageCount = (pageName: string, change: number) => {
+    const pageIndex = temporaryDatabase.findIndex(page => page.name === pageName)
+    temporaryDatabase[pageIndex].users += change
+    return temporaryDatabase[pageIndex].users
+}
+
+const clearTemporaryPage = async (pageName: string) => {
+    console.log("[server][data]:" + temporaryDatabase)
+
+    const page = temporaryDatabase.find(page => page.name === pageName);
+
+    if (page?.body != null) {
+        const upsertedPage = await upsertPage(pageName, page.body);
+        console.log("[database][data]: upsert page: " + upsertedPage);
+        const pageIndex = temporaryDatabase.findIndex(page => page.name === pageName);
+
+        if (pageIndex != null) {
+            temporaryDatabase.splice(pageIndex, 1);
+        } else { console.log("No item in array") }
+    } else {
+        console.log("[server][data] failed to save data because body is null");
+    }
+}
+
+io.on("connection", (socket) => {
+    console.log("[server][socket]: user connected, id: " + socket.id);
+    let temporaryPageName = "";
+    let initialConnection = true;
+    // on disconnect
+    socket.on("disconnect", async () => {
+        console.log("[server][socket]: user disconnected")
+        const countUsers = updateTemporaryPageCount(temporaryPageName, -1);
+        console.log("[server][data]: user count on " + temporaryPageName + ", " + countUsers);
+        if (countUsers < 1) {
+            await clearTemporaryPage(temporaryPageName);
+            console.log(`[server][data]: page ${temporaryPageName} deleted from array`);
+        } else {
+            socket.broadcast.emit("page_updated");
         }
     });
 
-    socket.on("update_page", async (pageName, newPageBody) => {
-        console.log("client updated, client data: " + pageName + ", " + newPageBody)
+    socket.on("get_page", async (pageName: string, callback) => {
+        if (pageName != null) {
+            console.log('[client]: user GET: ' + pageName);
+            let page = await getTemporaryPage(pageName);
+            if (initialConnection) {
+                temporaryPageName = pageName
+                updateTemporaryPageCount(temporaryPageName, 1);
+                initialConnection = false;
+                page = await getTemporaryPage(pageName);
+                socket.broadcast.emit("page_updated");
+            }
+            callback({
+                body: {
+                    pageName: pageName,
+                    pageBody: page?.body,
+                    pageUser: page.users,
+                }
+            });
+        } else {
+            console.log("[server]: No page with the name " + pageName);
+        }
+    });
 
-        await upsertPage(pageName, newPageBody);
+    socket.on("update_page", (pageName, newPageBody) => {
+        console.log("[client]: user update, new data: page: " + pageName + ", body: " + newPageBody)
+        const page = updateTemporaryPage(pageName, newPageBody);
+        console.log(page)
         socket.broadcast.emit("page_updated");
     });
 

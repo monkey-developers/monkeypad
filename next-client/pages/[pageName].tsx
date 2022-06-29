@@ -8,12 +8,14 @@ interface pageData {
     body: {
         pageName: string,
         pageBody: string,
+        pageUser: number;
     },
 }
 
 export default function Page() {
 
     const [pageBody, setPageBody] = useState("");
+    const [users, setUsers] = useState(0);
 
     const router = useRouter()
     const { pageName } = router.query
@@ -29,6 +31,7 @@ export default function Page() {
     const fetchData = () => {
         socket.emit("get_page", pageName, (response: pageData) => {
             setPageBody(response.body.pageBody);
+            setUsers(response.body.pageUser);
         });
     }
 
@@ -45,6 +48,7 @@ export default function Page() {
         <>
             <header className='text-center'>
                 <h1 className='text-2xl font-bold'> {pageName} </h1>
+                <h2> {users} </h2>
             </header>
             <textarea className='border-2 border-black' onChange={handleBodyChange} value={pageBody} />
         </>
