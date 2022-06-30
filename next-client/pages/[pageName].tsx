@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 import { io } from 'socket.io-client'
 
 const url = process.env.NEXT_PUBLIC_API_URL;
-const socket = io("ws://" + url);
+const socket = io("ws://" + url, { transports : ['websocket', 'polling', 'flashsocket'] });
 
 interface pageData {
     body: {
