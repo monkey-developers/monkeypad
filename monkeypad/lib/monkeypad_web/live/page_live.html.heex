@@ -1,0 +1,9 @@
+<section class="phx-hero">
+  <h1>Monkeypad</h1>
+</section>
+
+<section class="col">
+  <h1>Page</h1>
+  <%= f = form_for :page_form, "#", id: "search", phx_change: :change_page %>
+    <%= textarea f, :page_box, value: @content, phx_debounce: 300 %>
+</section>

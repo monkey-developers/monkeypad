@@ -17,7 +17,8 @@ defmodule MonkeypadWeb.Router do
   scope "/", MonkeypadWeb do
     pipe_through :browser
 
-    get "/", PageController, :index
+    live "/", HomeLive, :index
+    live "/:id", PageLive, :index
   end
 
   # Other scopes may use custom stacks.

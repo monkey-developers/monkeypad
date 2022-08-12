@@ -1,0 +1,10 @@
+<section class="phx-hero">
+  <h1>Monkeypad</h1>
+</section>
+
+<section class="row">
+  <%= f = form_for :room_form, "#", id: "search", phx_submit: :submit_room %>
+    <h1>Enter a room</h1>
+    <%= text_input f, :room_box, placeholder: "Chat Room ID..." %>
+    <%= submit "Enter Room" %>
+</section>
