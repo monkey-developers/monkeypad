@@ -5,7 +5,7 @@ config :monkeypad, Monkeypad.Repo,
   username: "postgres",
   password: "postgres",
   hostname: "localhost",
-  database: "postgres",
+  database: "monkeypad",
   stacktrace: true,
   show_sensitive_data_on_connection_error: true,
   pool_size: 10
