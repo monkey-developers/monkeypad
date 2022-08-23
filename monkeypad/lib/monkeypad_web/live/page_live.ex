@@ -17,18 +17,18 @@ defmodule MonkeypadWeb.PageLive do
      |> assign(
        page_id: page_id,
        topic: topic,
-       content: ''
+       content: ""
      )}
   end
 
-  def handle_event("change_page", %{"page_form" => %{"page_box" => content}}, socket) do
+  def handle_event("change_page", %{"page_form" => %{"content" => content}}, socket) do
     MonkeypadWeb.Endpoint.broadcast(socket.assigns.topic, "page_updated", content)
     # Pages.change_page(%{ content: content })
-    {:noreply, socket |> assign(content: content)}
+    {:noreply, socket}
   end
 
   def handle_info(%{event: "page_updated", payload: content}, socket) do
     content |> IO.inspect()
-    {:noreply, socket |> assign(content: content)}
+    {:noreply, assign(socket, content: content)}
   end
 end

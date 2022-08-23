@@ -4,6 +4,10 @@
 
 <section class="col">
   <h1>Page</h1>
-  <%= f = form_for :page_form, "#", id: "search", phx_change: :change_page %>
-    <%= textarea f, :page_box, value: @content, phx_debounce: 300 %>
+  <h2>Content: <%= @content %></h2>
+  <%= f = form_for :page_form, "#", 
+    id: "content_id"
+  %>
+
+    <%= text_input f, :content, value: @content, phx_change: :change_page, phx_debounce: "blur" %>
 </section>
