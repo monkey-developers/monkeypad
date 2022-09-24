@@ -4,6 +4,18 @@
 
 @layer base{
     body{
-        @apply bg-red-500 dark:bg-gray-700 dark:text-white
+        @apply bg-gray-100 dark:bg-slate-900 dark:text-white
+    }
+
+    textarea{
+        @apply dark:bg-slate-900 bg-gray-100
+    }
+
+    a {
+        @apply dark:bg-slate-800 dark:text-white
+    }
+
+    header{
+        @apply dark:text-black
     }
 }

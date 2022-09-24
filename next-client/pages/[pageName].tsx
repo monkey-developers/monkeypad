@@ -56,42 +56,62 @@ export default function Page() {
     const {systemTheme, theme, setTheme} = useTheme();
 
     const renderThemeChanger = () =>{
-        return(
-            <button className='rounded-full cursor-pointer flex p-4 w-16 bg-gray-100'>
-                <Image src={darkModeIcon} alt=""/>
-                </button>
-        )
 
         const currentTheme = theme === 'system' ? systemTheme : theme;
 
+        if (currentTheme === 'dark'){
+            return(
+            <a className='rounded-full cursor-pointer flex p-4 w-16 bg-gray-100' onClick={()=>setTheme('light')}>
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" className="text-teal-500">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M12 3v2.25m6.364.386l-1.591 1.591M21 12h-2.25m-.386 6.364l-1.591-1.591M12 18.75V21m-4.773-4.227l-1.591 1.591M5.25 12H3m4.227-4.773L5.636 5.636M15.75 12a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0z" />
+                </svg>
+
+                </a>
+        )
+        }
+
+        else{
+            return(
+            <a className='rounded-full cursor-pointer flex p-4 w-16 bg-gray-100' onClick={()=>setTheme('dark')}>
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" className="text-teal-500">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M21.752 15.002A9.718 9.718 0 0118 15.75c-5.385 0-9.75-4.365-9.75-9.75 0-1.33.266-2.597.748-3.752A9.753 9.753 0 003 11.25C3 16.635 7.365 21 12.75 21a9.753 9.753 0 009.002-5.998z" />
+                </svg>
+
+                </a>
+        )
+        }
+
+        
+
+        
     }
 
     return (
         <>
         <section className='flex items-center flex-col h-screen justify-center'>
             <header className='text-center justify-between top-6 fixed flex gap-5 w-11/12'>
-                <h1 className='text-2xl flex rounded-full py-2 px-10 items-center font-bold bg-gray-100'>
 
-
-                    <h1 className='text-3xl text-teal-500'>{pageName}</h1>&nbsp;monkey</h1>
+                <a className='flex bg-teal-50 rounded-full'> <h1 className='text-2xl flex py-2 px-10 items-center font-bold'>
+                      <h1 className='text-3xl text-teal-500'>{pageName}</h1>&nbsp;monkey</h1>
+                </a>
                 <div className='flex'>
                     <div className='flex gap-5 mr-32'>
-                        <Link href="#"><a> <div className='rounded-full cursor-pointer flex p-4 w-16 bg-gray-100'><Image src={fontIcon} alt="" /></div></a></Link>
-                        <Link href="#"><a><div className='rounded-full cursor-pointer flex p-4 w-16 bg-gray-100'><Image src={spaceIcon} alt="" /></div></a></Link>
+                        <Link href="#"><a className='rounded-full bg-teal-50'> <div className='rounded-full cursor-pointer flex p-4 w-16'><Image src={fontIcon} alt="" /></div></a></Link>
+                        <Link href="#"><a className='rounded-full bg-teal-50'> <div className=' cursor-pointer flex p-4 w-16'><Image src={spaceIcon} alt="" /></div></a></Link>
                         {renderThemeChanger()}
-                        <Link href="#"><a> <div className='rounded-full cursor-pointer flex p-4 w-16 bg-gray-100'><Image src={gitHubIcon} alt=""/></div></a></Link>
+                        <Link href="#"><a className='rounded-full bg-teal-50'> <div className='rounded-full cursor-pointer flex p-4 w-16'><Image src={gitHubIcon} alt=""/></div></a></Link>
                     </div>
 
-                    <div className='rounded-full flex items-center py-2 px-6 bg-gray-100'>
+                    <a className='rounded-full flex items-center py-2 px-6 bg-teal-50'>
                         <h6 className='text-teal-500 text-3xl'>{users}</h6>
-                    </div>
+                    </a>
 
                 </div>
             </header>
-            <textarea className='w-full px-16 mt-28 outline-0 h-screen space tracking-wider resize-none' onChange={handleBodyChange} value={pageBody} />
+            <textarea className='w-full px-16 mt-32 outline-0 h-screen space tracking-wider resize-none' onChange={handleBodyChange} value={pageBody} />
             
-        </section>
-        <div className='fixed flex text-2xl rounded-full bg-gray-100 py-2 px-4 font-bold bottom-10 right-20'>Monkey <div className='text-teal-500'>Pad</div></div>
+        </section> 
+        <a className='rounded-full fixed flex text-2xl py-2 px-4 font-bold bottom-10 right-16'>Monkey <h5 className='text-teal-500'>Pad</h5></a>
         </>
     )
 }
