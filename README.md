@@ -35,3 +35,5 @@ Dontpad for monkeys 🙊
 #### Developers
 
 <span style="color: #5E81AC;">⬤</span> [abehidek](https://github.com/abehidek)
+<span style="color: #7E51bC;">⬤</span> [vitormiura](https://github.com/vitormiura)
+<span style="color: #2E31cd;">⬤</span> [viniciusventura29](https://github.com/viniciusventura29)

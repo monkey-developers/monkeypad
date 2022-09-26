@@ -95,8 +95,10 @@ export default function Page() {
                       <h1 className='text-3xl text-teal-500'>{pageName}</h1>&nbsp;monkey</h6>
                 <div className='flex'>
                     <div className='flex gap-5 mr-32'>
-                        <Link href="#"><a className='rounded-full bg-teal-50'> <div className='rounded-full cursor-pointer flex p-4 w-[3.5rem]'><Image src={fontIcon} alt="" /></div></a></Link>
-                        <Link href="#"><a className='rounded-full bg-teal-50'> <div className=' cursor-pointer flex p-4 w-[3.5rem]'><Image src={spaceIcon} alt="" /></div></a></Link>
+                        
+                        {/* FUNÇÕES DE MARKDOWN DESABILITADAS PORQUE O DEV É BURRO E TA APANHANDO PRA FAZER */}
+                        {/* <a className='rounded-full bg-teal-50'> <div className='rounded-full cursor-pointer flex p-4 w-[3.5rem]'><Image src={fontIcon} alt="" /></div></a>
+                        <a className='rounded-full bg-teal-50'> <div className=' cursor-pointer flex p-4 w-[3.5rem]'><Image src={spaceIcon} alt="" /></div></a> */}
                         {renderThemeChanger()}
                         <Link href="https://github.com/monkey-developers"><a target="_blank" className='rounded-full bg-teal-50'> <div className='rounded-full cursor-pointer flex p-4 w-[3.5rem]'><Image src={gitHubIcon} alt=""/></div></a></Link>
                     </div>
@@ -107,7 +109,6 @@ export default function Page() {
                 </div>
             </header>
             <textarea className='w-full px-16 mt-32 outline-0 h-screen space tracking-wider resize-none' onChange={handleBodyChange} value={pageBody} />
-            
         </section> 
         <a href='/' className='rounded-full fixed flex text-2xl py-2 px-8 font-bold bottom-10 right-16'>Monkey <h5 className='text-teal-500'>Pad</h5></a>
         </>
