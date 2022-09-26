@@ -109,6 +109,7 @@ export default function Page() {
                 </div>
             </header>
             <textarea className='w-full px-16 mt-32 outline-0 h-screen space tracking-wider resize-none' onChange={handleBodyChange} value={pageBody} />
+            
         </section> 
         <a href='/' className='rounded-full fixed flex text-2xl py-2 px-8 font-bold bottom-10 right-16'>Monkey <h5 className='text-teal-500'>Pad</h5></a>
         </>

@@ -15,14 +15,17 @@ const Home: NextPage = () => {
   };
 
   return (
-    <main className='flex items-center flex-col h-screen justify-center bg-slate-200 gap-5'>
+    <main className='dark:bg-slate-900 flex items-center flex-col h-screen justify-center bg-slate-300 gap-5'>
+      <h1 className='dark:text-white text-5xl mb-20 font-bold'>Welcome to Monkeypad!</h1>
       <Image src={monkeyPic} alt="Picture of a Monkey" width={300} height={300} />
-      <h1 className='text-3xl font-bold'>Welcome to Monkeypad!</h1>
-      <p className='text-1xl'>Which note do you want to select? :</p>
-      <input onKeyDown={handleKeyDown} onChange={handleInput} type="text" className='shadow appearance-none border rounded w-96 py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline' />
-      <button onClick={() => router.push(pageName)} className='bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline' >
+      
+      <p className='dark:text-white text-2xl'>Which note do you want to select?</p>
+      <div className='flex mt-20'>
+      <input onKeyDown={handleKeyDown} onChange={handleInput} type="text" className='shadow appearance-none rounded-l-3xl w-96 py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline' />
+      <button onClick={() => router.push(pageName)} className='bg-teal-500 border hover:bg-teal-700 text-white font-bold py-2 px-4 rounded-r-3xl focus:outline-none focus:shadow-outline' >
         Enter
       </button>
+      </div>
     </main >
   )
 }
