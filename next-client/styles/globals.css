@@ -30,4 +30,8 @@
     input{
         @apply dark:bg-slate-100
     }
+
+    button{
+        @apply hover:dark:bg-slate-600 hover:bg-slate-200
+    }
 }
