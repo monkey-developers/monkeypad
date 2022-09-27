@@ -22,7 +22,7 @@ const io = new Server(server, {
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json())
 
-// data
+// datab
 interface Page {
     name: string,
     body: string,

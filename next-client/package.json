@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "next": "12.2.0",
+    "next-themes": "^0.2.1",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "socket.io-client": "^4.5.1"
