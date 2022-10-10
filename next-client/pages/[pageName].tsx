@@ -80,25 +80,19 @@ export default function Page() {
                 </button>
         )
         }
-
-        
-
         
     }
 
     return (
         <>
         <section className='flex items-center flex-col h-screen justify-center'>
-            <header className='text-center justify-between top-6 fixed flex gap-5 w-11/12'>
+            <header className='text-center lg:justify-between flex-col lg:flex-row top-6 fixed flex gap-5 w-11/12'>
 
-                 <h6 className='dark:text-white flex bg-teal-50 rounded-full text-2xl flex py-2 px-10 items-center font-bold '>
-                      <h1 className='text-3xl text-teal-500'>{pageName}</h1>&nbsp;monkey</h6>
-                <div className='flex'>
-                    <div className='flex gap-5 mr-32'>
+                 <h6 className='dark:text-white flex bg-teal-50 rounded-full lg:text-2xl flex justify-center py-2 px-6 lg:px-10 items-center font-bold '>
+                      <h1 className='text-xl lg:text-3xl text-teal-500'>{pageName}</h1>&nbsp;monkey</h6>
+                <div className='flex gap-5 justify-center lg:gap-0'>
+                    <div className='flex gap-5 lg:mr-32'>
                         
-                        {/* FUNÇÕES DE MARKDOWN DESABILITADAS PORQUE O DEV É BURRO E TA APANHANDO PRA FAZER */}
-                        {/* <a className='rounded-full bg-teal-50'> <div className='rounded-full cursor-pointer flex p-4 w-[3.5rem]'><Image src={fontIcon} alt="" /></div></a>
-                        <a className='rounded-full bg-teal-50'> <div className=' cursor-pointer flex p-4 w-[3.5rem]'><Image src={spaceIcon} alt="" /></div></a> */}
                         {renderThemeChanger()}
                         <Link href="https://github.com/monkey-developers"><a target="_blank" className='rounded-full bg-teal-50'> <div className='rounded-full cursor-pointer flex p-4 w-[3.5rem]'><Image src={gitHubIcon} alt=""/></div></a></Link>
                     </div>
@@ -108,10 +102,10 @@ export default function Page() {
 
                 </div>
             </header>
-            <textarea className='w-full px-16 mt-32 outline-0 h-screen space tracking-wider resize-none' onChange={handleBodyChange} value={pageBody} />
+            <textarea className='w-full px-8 lg:px-16 mt-40 lg:mt-32 outline-0 h-screen space tracking-wider resize-none' onChange={handleBodyChange} value={pageBody} />
             
         </section> 
-        <Link href='/'><a className='rounded-full fixed flex text-2xl py-2 px-8 font-bold bottom-10 right-16 bg-teal-50'> Monkey <h5 className='text-teal-500'>Pad</h5></a></Link>
+        <Link href='/'><a className='rounded-full fixed flex text-xl lg:text-2xl py-2 px-8 font-bold bottom-6 lg:bottom-10 right-6 lg:right-16 bg-teal-50'> Monkey <h5 className='text-teal-500'>Pad</h5></a></Link>
         </>
     )
 }

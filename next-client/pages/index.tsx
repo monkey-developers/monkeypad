@@ -16,12 +16,12 @@ const Home: NextPage = () => {
 
   return (
     <main className='dark:bg-slate-900 flex items-center flex-col h-screen justify-center bg-slate-300 gap-5'>
-      <h1 className='dark:text-white text-5xl mb-20 font-bold'>Welcome to Monkeypad!</h1>
+      <h1 className='dark:text-white text-2xl lg:text-5xl mb-20 font-bold'>Welcome to Monkeypad!</h1>
       <Image src={monkeyPic} alt="Picture of a Monkey" width={300} height={300} />
       
-      <p className='dark:text-white text-2xl'>Which note do you want to select?</p>
-      <div className='flex mt-20'>
-      <input onKeyDown={handleKeyDown} onChange={handleInput} type="text" className='shadow appearance-none rounded-l-3xl w-96 py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline' />
+      <p className='dark:text-white text-xl lg:text-2xl'>Which note do you want to select?</p>
+      <div className='flex mt-10'>
+      <input onKeyDown={handleKeyDown} onChange={handleInput} type="text" className='shadow appearance-none rounded-l-3xl w-52 lg:w-96 py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline' />
       <button onClick={() => router.push(pageName)} className='bg-teal-500 border hover:bg-teal-700 text-white font-bold py-2 px-4 rounded-r-3xl focus:outline-none focus:shadow-outline' >
         Enter
       </button>
